@@ -3,11 +3,13 @@ package com.fmohammadi.whatsapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +41,38 @@ class MainActivity : AppCompatActivity() {
 //        })
 
         myAuth = FirebaseAuth.getInstance()
+
+        saveBtn.setOnClickListener {
+            val email = tvEmail.text.toString()
+            val password = tvPassword.text.toString()
+            val rePassword = tvRePassword.text.toString()
+
+            if (!email.isEmpty() && !password.isEmpty() && !rePassword.isEmpty()) {
+                if (password == rePassword) {
+                    myAuth!!.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task: Task<AuthResult> ->
+                            if (task.isSuccessful) {
+                                var user: FirebaseUser = myAuth!!.currentUser!!
+                                Log.d("Email", user.email.toString())
+                            } else {
+                                Log.d("Error", task.exception.toString())
+                            }
+                        }
+                } else {
+                    Toast.makeText(
+                        this,
+                        "not equals password with confirm password. please try again!!!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    this,
+                    "please enter information!!!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
         myAuth!!.signInWithEmailAndPassword("f.mohammadi@gmail.com", "123456")
             .addOnCompleteListener { task: Task<AuthResult> ->
