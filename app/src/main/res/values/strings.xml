@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WhatsApp</string>
+    <string name="welcome_text">welcome to whatsapp</string>
+    <string name="login">login</string>
+    <string name="create_account">Create Account</string>
+    <string name="icon_img">icon description</string>
 </resources>
