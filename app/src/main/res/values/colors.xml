@@ -2,5 +2,15 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#4fa881</color>
+    <color name="colorIndivateToTab">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorCardView">#f7f7f7</color>
+    <color name="gray_100">#f5f5f5</color>
+    <color name="gray_200">#eeeeee</color>
+    <color name="gray_500">#a4a4a4</color>
+    <color name="gray_800">#212121</color>
+    <color name="bgColor">#8f78ba</color>
+    <color name="darkBg">#222222</color>
+    <color name="green">#6aa62d</color>
 </resources>
