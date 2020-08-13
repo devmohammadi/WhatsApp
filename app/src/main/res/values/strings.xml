@@ -4,4 +4,6 @@
     <string name="login">login</string>
     <string name="create_account">Create Account</string>
     <string name="icon_img">icon description</string>
+    <string name="hint_Email">Please Enter Your Email</string>
+    <string name="hint_Password">Please Enter Your Password</string>
 </resources>

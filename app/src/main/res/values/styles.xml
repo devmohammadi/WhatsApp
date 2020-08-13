@@ -19,4 +19,55 @@
         <item name="android:textSize">18dp</item>
     </style>
 
+    <style name="editText_Style">
+        <item name="android:textCursorDrawable">@drawable/bg_input_cursor_2</item>
+        <item name="android:background">@drawable/selector_bg_edit_2</item>
+        <item name="android:ems">10</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="title_page">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginStart">10dp</item>
+    <item name="android:layout_marginBottom">10dp</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textSize">24sp</item>
+    <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cardView_Login_create">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="cardCornerRadius">30dp</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
+    <style name="iconImage">
+        <item name="android:layout_width">212dp</item>
+        <item name="android:layout_height">212dp</item>
+        <item name="android:contentDescription">@string/icon_img</item>
+    </style>
+
+    <style name="button_Login_create_Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="layout_goneMarginEnd">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:stateListAnimator">@drawable/state_list_animator_z</item>
+        <item name="android:background">@drawable/button_style</item>
+        <item name="android:textColor">@color/gray_100</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
