@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".LoginActivity">
+    tools:context=".CreateAccountActivity">
 
     <ImageView
-        android:id="@+id/iconLogin"
+        android:id="@+id/iconCreate"
         style="@style/iconImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,13 +16,11 @@
         app:srcCompat="@drawable/icon" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_Login"
+        android:id="@+id/cardView_Create"
         style="@style/cardView_Login_create"
-        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iconLogin">
-
+        app:layout_constraintTop_toBottomOf="@+id/iconCreate">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,29 +28,46 @@
             android:layout_margin="15dp"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/title_page"
-                android:text="@string/login" />
+        <TextView
+            style="@style/title_page"
+            android:text="@string/create_account" />
 
             <EditText
-                android:id="@+id/tvEmail_Login"
+                android:id="@+id/tvName_Create"
+                style="@style/editText_Style"
+                android:autofillHints=""
+                android:hint="@string/hint_Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/tvEmail_Create"
                 style="@style/editText_Style"
                 android:autofillHints=""
                 android:hint="@string/hint_Email"
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/tvPassword_Login"
+                android:id="@+id/tvPassword_Create"
                 style="@style/editText_Style"
                 android:autofillHints=""
                 android:hint="@string/hint_Password"
                 android:inputType="textPassword" />
 
+            <EditText
+                android:id="@+id/tvRePassword_Create"
+                style="@style/editText_Style"
+                android:autofillHints=""
+                android:hint="@string/hint_RePassword"
+                android:inputType="textPassword" />
+
             <Button
-                android:id="@+id/btn_login"
+                android:id="@+id/btn_Create"
                 style="@style/button_Login_create_Style"
-                android:text="@string/login" />
+                android:text="@string/create_account" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

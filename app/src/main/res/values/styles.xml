@@ -47,11 +47,13 @@
         <item name="android:layout_marginEnd">32dp</item>
         <item name="cardCornerRadius">30dp</item>
         <item name="cardUseCompatPadding">true</item>
+        <item name="cardElevation">10dp</item>
     </style>
 
     <style name="iconImage">
-        <item name="android:layout_width">212dp</item>
-        <item name="android:layout_height">212dp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_marginTop">20dp</item>
         <item name="android:contentDescription">@string/icon_img</item>
     </style>
 
