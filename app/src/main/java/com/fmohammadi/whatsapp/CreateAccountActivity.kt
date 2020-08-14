@@ -1,5 +1,6 @@
 package com.fmohammadi.whatsapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -73,7 +74,10 @@ class CreateAccountActivity : AppCompatActivity() {
 
                     mDatabase!!.setValue(userObject).addOnCompleteListener { task: Task<Void> ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "User Created", Toast.LENGTH_LONG).show()
+                            var dashboardIntent = Intent(this, DashboaerdActivity::class.java)
+                            dashboardIntent.putExtra("name", name)
+                            startActivity(dashboardIntent)
+                            finish()
                         } else {
                             Toast.makeText(this, "User Not Created", Toast.LENGTH_LONG).show()
                         }
