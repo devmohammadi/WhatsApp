@@ -7,10 +7,13 @@
     android:background="@drawable/bg"
     tools:context=".controller.activitys.LoginActivity">
 
+
     <ImageView
         android:id="@+id/iconLogin"
         style="@style/iconImage"
+        android:contentDescription="@string/icon_img"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon" />
@@ -20,6 +23,7 @@
         style="@style/cardView_Login_create"
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iconLogin">
 
@@ -53,6 +57,7 @@
                 style="@style/button_Login_create_Style"
                 android:text="@string/login" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

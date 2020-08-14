@@ -8,6 +8,8 @@
     <string name="hint_Password">Please Enter Your Password</string>
     <string name="hint_RePassword">Please Enter confirm Password</string>
     <string name="hint_Name">Please Enter Your Name</string>
+    <string name="Logout">Logout</string>
+    <string name="settings">settings</string>
 
 
 </resources>
