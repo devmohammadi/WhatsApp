@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DashboaerdActivity"></activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".controller.activitys.DashboaerdActivity"></activity>
+        <activity android:name=".controller.activitys.LoginActivity" />
+        <activity android:name=".controller.activitys.CreateAccountActivity" />
+        <activity android:name=".controller.activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

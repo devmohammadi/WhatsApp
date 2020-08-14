@@ -1,4 +1,4 @@
-package com.fmohammadi.whatsapp
+package com.fmohammadi.whatsapp.controller.activitys
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import com.fmohammadi.whatsapp.R
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
