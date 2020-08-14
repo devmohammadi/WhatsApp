@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/btn_Login"
+        android:id="@+id/bttn_Login"
         android:text="@string/login"
         style="@style/btnStyle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +46,6 @@
         style="@style/btnStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
+        app:layout_constraintTop_toBottomOf="@+id/bttn_Login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
