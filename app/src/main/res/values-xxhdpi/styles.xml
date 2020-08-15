@@ -29,13 +29,13 @@
     </style>
 
     <style name="title_page">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_marginStart">10dp</item>
-    <item name="android:layout_marginBottom">10dp</item>
-    <item name="android:textAllCaps">true</item>
-    <item name="android:textSize">24sp</item>
-    <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="cardView_Login_create">
@@ -70,17 +70,6 @@
         <item name="android:background">@drawable/button_style</item>
         <item name="android:textColor">@color/gray_100</item>
         <item name="android:textSize">18dp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-
-    <style name="Setting_title">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">2dp</item>
-    </style>
-
-    <style name="Setting_title_default" parent="Setting_title">
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

@@ -10,6 +10,13 @@
     <string name="hint_Name">Please Enter Your Name</string>
     <string name="Logout">Logout</string>
     <string name="settings">settings</string>
+    <string name="name">Name</string>
+    <string name="default_name">Fatemeh Mohammadi</string>
+    <string name="description_name">This is not your username or pin. This name will be visible to your WhatsApp contacts.</string>
+    <string name="about">About</string>
+    <string name="default_about">I am programmer...</string>
+    <string name="email">Email</string>
+    <string name="default_email">79f.mohammadi@gmail.com</string>
 
 
 </resources>
