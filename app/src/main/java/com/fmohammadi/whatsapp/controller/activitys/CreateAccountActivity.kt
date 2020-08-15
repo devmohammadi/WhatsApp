@@ -69,7 +69,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
                     userObject.put("name", name)
                     userObject.put("email", email)
-                    userObject.put("about", "")
+                    userObject.put("status", "")
                     userObject.put("image", "default")
                     userObject.put("thumb_image", "default")
 

@@ -17,6 +17,8 @@
     <string name="default_about">I am programmer...</string>
     <string name="email">Email</string>
     <string name="default_email">79f.mohammadi@gmail.com</string>
+    <string name="default_PopUpdate">Please Enter Your </string>
+    <string name="Update">Update </string>
 
 
 </resources>
