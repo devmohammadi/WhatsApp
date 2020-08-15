@@ -16,14 +16,14 @@
         <item name="android:background">@drawable/button_style</item>
         <item name="android:textColor">@color/gray_100</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">11dp</item>
+        <item name="android:textSize">14dp</item>
     </style>
 
     <style name="editText_Style">
         <item name="android:textCursorDrawable">@drawable/bg_input_cursor_2</item>
         <item name="android:background">@drawable/selector_bg_edit_2</item>
         <item name="android:ems">6</item>
-        <item name="android:textSize">11dp</item>
+        <item name="android:textSize">14dp</item>
         <item name="android:layout_height">45dp</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -70,7 +70,7 @@
         <item name="android:stateListAnimator">@drawable/state_list_animator_z</item>
         <item name="android:background">@drawable/button_style</item>
         <item name="android:textColor">@color/gray_100</item>
-        <item name="android:textSize">11dp</item>
+        <item name="android:textSize">14dp</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>
