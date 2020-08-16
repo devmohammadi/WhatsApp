@@ -25,6 +25,10 @@ android {
     }
 }
 
+repositories {
+    maven{ url "https://oss.sonatype.org/content/repositories/snapshots"}
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -38,7 +42,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.1.1'
 
     // using picasso library for picture
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     //using for Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'

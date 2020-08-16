@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageRegistrar
 import com.google.firebase.storage.UploadTask
+import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -61,13 +62,20 @@ class SettingsActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var name = snapshot.child("name").value
                 var status = snapshot.child("status").value
-                var image = snapshot.child("image").value
+                var image = snapshot.child("image").value.toString()
                 var email = snapshot.child("email").value
                 var thumb_image = snapshot.child("thumb_image").value
 
                 default_name.text = name.toString()
                 default_about.text = status.toString()
                 default_email.text = email.toString()
+
+                if(image!! != "default"){
+                    Picasso.with(this@SettingsActivity)
+                        .load(image)
+                        .placeholder(R.drawable.profile)
+                        .into(image_profile)
+                }
             }
         })
 
@@ -208,7 +216,6 @@ class SettingsActivity : AppCompatActivity() {
                             }
                         }
                     }
-
             }
         }
         //super.onActivityResult(requestCode, resultCode, data)
