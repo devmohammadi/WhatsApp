@@ -1,8 +1,13 @@
 package com.fmohammadi.whatsapp.controller.activitys
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.TableRow
 import android.widget.Toast
@@ -12,16 +17,23 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageRegistrar
+import com.google.firebase.storage.UploadTask
+import com.theartofdev.edmodo.cropper.CropImage
+import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.popup_update_status.*
 import kotlinx.android.synthetic.main.popup_update_status.view.*
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 class SettingsActivity : AppCompatActivity() {
 
     var mDatabase: DatabaseReference? = null
     var mUser: FirebaseUser? = null
-    var mStorage: StorageRegistrar? = null
+    var mStorage: StorageReference? = null
     var GALLERY_ID: Int = 1
 
     var alertDialogBuilder: AlertDialog.Builder? = null
@@ -39,10 +51,13 @@ class SettingsActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance().reference
             .child("Users").child(uid)
 
+        mStorage = FirebaseStorage.getInstance().reference
+
         mDatabase!!.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 var name = snapshot.child("name").value
                 var status = snapshot.child("status").value
@@ -56,11 +71,11 @@ class SettingsActivity : AppCompatActivity() {
             }
         })
 
-        change_profile.setOnClickListener{
+        change_profile.setOnClickListener {
             var galleryIntent = Intent()
             galleryIntent.type = "image/*"
             galleryIntent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(Intent.createChooser(galleryIntent,"choose image"),GALLERY_ID)
+            startActivityForResult(Intent.createChooser(galleryIntent, "choose image"), GALLERY_ID)
         }
     }
 
@@ -83,31 +98,119 @@ class SettingsActivity : AppCompatActivity() {
         view.btn_popChange.text = "Update $title"
         view.popTitle.text = title
 
-
         view.btn_popChange.setOnClickListener {
             var updated = view.default_popUpdate.text.toString().trim()
-            var childPath: String? = null
-            if (title == "About") childPath = "status"
-            if (title == "Name") childPath = "name"
-            if (childPath != null) {
-                mDatabase!!.child(childPath).setValue(updated)
-                    .addOnCompleteListener { task: Task<Void> ->
-                        if (task.isSuccessful)
-                            Toast.makeText(this, "Update $title is Successfully", Toast.LENGTH_LONG)
-                                .show()
-                        else
-                            Toast.makeText(this, "Update $title is Not Successfully try again", Toast.LENGTH_LONG)
-                                .show()
-                    }
+            if (TextUtils.isEmpty(updated)) {
+                Toast.makeText(this, "Please Enter Your $title", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                var childPath: String? = null
+                if (title == "About") childPath = "status"
+                if (title == "Name") childPath = "name"
+                if (childPath != null) {
+                    mDatabase!!.child(childPath).setValue(updated)
+                        .addOnCompleteListener { task: Task<Void> ->
+                            if (task.isSuccessful)
+                                Toast.makeText(
+                                    this,
+                                    "Update $title is Successfully",
+                                    Toast.LENGTH_LONG
+                                )
+                                    .show()
+                            else
+                                Toast.makeText(
+                                    this,
+                                    "Update $title is Not Successfully try again",
+                                    Toast.LENGTH_LONG
+                                )
+                                    .show()
+                        }
+                }
+                alertDialog!!.dismiss()
             }
-            alertDialog!!.dismiss()
         }
-
-
     }
 
 
+    @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY_ID && resultCode == Activity.RESULT_OK) {
+            var image: Uri = data!!.data!!
+
+            CropImage.activity(image)
+                .setAspectRatio(1, 1)
+                .start(this)
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            var result = CropImage.getActivityResult(data)
+
+            if (resultCode == Activity.RESULT_OK) {
+                var imageUri: Uri = result.uri
+                var userId = mUser!!.uid
+                var thumbFile = File(imageUri.path)
+
+                var thumbBitMap = Compressor(this)
+                    .setMaxWidth(200)
+                    .setMaxHeight(200)
+                    .setQuality(50)
+                    .compressToBitmap(thumbFile)
+
+                // upload image to server ( firebase )
+                var byteArray: ByteArrayOutputStream = ByteArrayOutputStream()
+                thumbBitMap.compress(Bitmap.CompressFormat.PNG, 100, byteArray)
+
+                var thumbByteArray: ByteArray = byteArray.toByteArray()
+
+                var filePath = mStorage!!.child("chat_profile_images")
+                    .child("$userId.png")
+
+                var thumbFilePath = mStorage!!.child("chat_profile_images")
+                    .child("thumbs")
+                    .child("$userId.png")
+
+                filePath.putFile(imageUri)
+                    .addOnCompleteListener { task: Task<UploadTask.TaskSnapshot> ->
+                        if (task.isSuccessful) {
+                            filePath.downloadUrl.addOnSuccessListener { uri: Uri? ->
+                                if (uri != null) {
+                                    var downloadUrl = uri.toString()
+
+                                    var uploadTask: UploadTask =
+                                        thumbFilePath.putBytes(thumbByteArray)
+
+                                    uploadTask.addOnCompleteListener { task: Task<UploadTask.TaskSnapshot> ->
+                                        thumbFilePath.downloadUrl.addOnSuccessListener { uri: Uri? ->
+                                            if (uri != null) {
+                                                var thumbUrl = uri.toString()
+
+                                                if (task.isSuccessful) {
+                                                    var objectUpdated = HashMap<String, Any>()
+                                                    objectUpdated.put("image", downloadUrl)
+                                                    objectUpdated.put("thumb_image", thumbUrl)
+
+                                                    mDatabase!!.updateChildren(objectUpdated)
+                                                        .addOnCompleteListener { task: Task<Void> ->
+                                                            if (task.isSuccessful) {
+                                                                Toast.makeText(
+                                                                    this,
+                                                                    "profile image saved",
+                                                                    Toast.LENGTH_LONG
+                                                                )
+                                                                    .show()
+                                                            }
+                                                        }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+            }
+        }
+        //super.onActivityResult(requestCode, resultCode, data)
     }
 }

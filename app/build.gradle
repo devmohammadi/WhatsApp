@@ -46,6 +46,9 @@ dependencies {
     //Android Image Cropper
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
+    //compressor
+    implementation 'id.zelory:compressor:2.1.0'
+
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.2.0'
