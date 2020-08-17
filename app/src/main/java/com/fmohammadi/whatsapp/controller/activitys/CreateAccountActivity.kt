@@ -67,16 +67,16 @@ class CreateAccountActivity : AppCompatActivity() {
 
                     var userObject = HashMap<String, String>()
 
-                    userObject.put("name", name)
-                    userObject.put("email", email)
-                    userObject.put("status", "")
-                    userObject.put("image", "default")
-                    userObject.put("thumb_image", "default")
+                    userObject.put("userName", name)
+                    userObject.put("userEmail", email)
+                    userObject.put("userStatus", "")
+                    userObject.put("userImage", "default")
+                    userObject.put("userThumbImage", "default")
 
                     mDatabase!!.setValue(userObject).addOnCompleteListener { task: Task<Void> ->
                         if (task.isSuccessful) {
                             var dashboardIntent = Intent(this, DashboaerdActivity::class.java)
-                            dashboardIntent.putExtra("name", name)
+                            dashboardIntent.putExtra("userName", name)
                             startActivity(dashboardIntent)
                             finish()
                         } else {

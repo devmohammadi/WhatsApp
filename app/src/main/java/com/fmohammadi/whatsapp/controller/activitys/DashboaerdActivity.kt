@@ -27,7 +27,7 @@ class DashboaerdActivity : AppCompatActivity() {
         mainTab.setTabTextColors(Color.WHITE, Color.GREEN)
 
         if (intent!!.extras != null) {
-            Toast.makeText(this, intent!!.extras!!.getString("name"), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, intent!!.extras!!.getString("userName"), Toast.LENGTH_LONG).show()
         }
     }
 

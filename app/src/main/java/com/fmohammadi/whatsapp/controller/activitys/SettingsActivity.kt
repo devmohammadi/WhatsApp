@@ -60,15 +60,15 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var name = snapshot.child("name").value
-                var status = snapshot.child("status").value
-                var image = snapshot.child("image").value.toString()
-                var email = snapshot.child("email").value
-                var thumb_image = snapshot.child("thumb_image").value
+                var name = snapshot.child("userName").value.toString()
+                var email = snapshot.child("userEmail").value.toString()
+                var status = snapshot.child("userStatus").value.toString()
+                var image = snapshot.child("userImage").value.toString()
+                var thumbImage = snapshot.child("userThumbImage").value.toString()
 
-                default_name.text = name.toString()
-                default_about.text = status.toString()
-                default_email.text = email.toString()
+                default_name.text = name
+                default_about.text = status
+                default_email.text = email
 
                 if(image!! != "default"){
                     Picasso.with(this@SettingsActivity)
@@ -113,8 +113,8 @@ class SettingsActivity : AppCompatActivity() {
                     .show()
             } else {
                 var childPath: String? = null
-                if (title == "About") childPath = "status"
-                if (title == "Name") childPath = "name"
+                if (title == "About") childPath = "userStatus"
+                if (title == "Name") childPath = "userName"
                 if (childPath != null) {
                     mDatabase!!.child(childPath).setValue(updated)
                         .addOnCompleteListener { task: Task<Void> ->
@@ -194,8 +194,8 @@ class SettingsActivity : AppCompatActivity() {
 
                                                 if (task.isSuccessful) {
                                                     var objectUpdated = HashMap<String, Any>()
-                                                    objectUpdated.put("image", downloadUrl)
-                                                    objectUpdated.put("thumb_image", thumbUrl)
+                                                    objectUpdated.put("userImage", downloadUrl)
+                                                    objectUpdated.put("userThumbImage", thumbUrl)
 
                                                     mDatabase!!.updateChildren(objectUpdated)
                                                         .addOnCompleteListener { task: Task<Void> ->

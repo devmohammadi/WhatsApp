@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             if (user != null) {
                 var dashboardIntent = Intent(this, DashboaerdActivity::class.java)
                 var userName = user!!.email!!.split('@')[0]
-                dashboardIntent.putExtra("name", userName)
+                dashboardIntent.putExtra("userName", userName)
                 startActivity(dashboardIntent)
                 finish()
             }
