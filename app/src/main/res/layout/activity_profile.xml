@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.activitys.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="417dp"
+        android:layout_height="417dp"
+        android:contentDescription="@string/icon_img"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile" />
+
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_profileIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/profile_icon"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    style="@style/Setting_title"
+                    android:layout_toEndOf="@id/profile_profileIcon"
+                    android:text="@string/name" />
+
+                <TextView
+                    android:id="@+id/profile_default_name"
+                    style="@style/Setting_title_default"
+                    android:layout_below="@id/profile_name"
+                    android:layout_toEndOf="@id/profile_profileIcon"
+                    android:textColor="@android:color/black"
+                    tools:text="@string/default_name" />
+
+                <TextView
+                    android:id="@+id/profile_description_name"
+                    style="@style/Setting_title"
+                    android:layout_below="@id/profile_default_name"
+                    android:layout_toEndOf="@id/profile_profileIcon"
+                    android:text="@string/description_name" />
+
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_about_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/about_icon"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/profile_about"
+                    style="@style/Setting_title"
+                    android:layout_toEndOf="@id/profile_about_icon"
+                    android:text="@string/about" />
+
+                <TextView
+                    android:id="@+id/profile_default_about"
+                    style="@style/Setting_title_default"
+                    android:layout_below="@id/profile_about"
+                    android:layout_toEndOf="@id/profile_about_icon"
+                    android:textColor="@android:color/black"
+                    tools:text="@string/default_about" />
+
+
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_email_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/email_icon"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/profile_email"
+                    style="@style/Setting_title"
+                    android:layout_toEndOf="@id/profile_email_icon"
+                    android:text="@string/email" />
+
+                <TextView
+                    android:id="@+id/profile_default_email"
+                    style="@style/Setting_title_default"
+                    android:layout_below="@id/profile_email"
+                    android:layout_toEndOf="@id/profile_email_icon"
+                    android:textColor="@android:color/black"
+                    tools:text="@string/default_email" />
+            </RelativeLayout>
+        </TableRow>
+
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
