@@ -8,11 +8,13 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TableRow
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.fmohammadi.whatsapp.R
+import com.fmohammadi.whatsapp.controller.adapter.UsersAdapter
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -25,6 +27,7 @@ import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import id.zelory.compressor.Compressor
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.popup_show_image_profile.view.*
 import kotlinx.android.synthetic.main.popup_update_status.*
 import kotlinx.android.synthetic.main.popup_update_status.view.*
 import java.io.ByteArrayOutputStream
@@ -76,6 +79,17 @@ class SettingsActivity : AppCompatActivity() {
                         .placeholder(R.drawable.profile)
                         .into(image_profile)
                 }
+
+                image_profile.setOnClickListener{
+                    var viewImage = layoutInflater.inflate(R.layout.popup_show_image_profile,null)
+                    alertDialogBuilder = AlertDialog.Builder(this@SettingsActivity).setView(viewImage)
+                    alertDialog = alertDialogBuilder!!.create()
+                    alertDialog!!.show()
+                    Picasso.with(this@SettingsActivity)
+                        .load(image)
+                        .placeholder(R.drawable.profile)
+                        .into(viewImage.popImage)
+                }
             }
         })
 
@@ -86,6 +100,9 @@ class SettingsActivity : AppCompatActivity() {
             startActivityForResult(Intent.createChooser(galleryIntent, "choose image"), GALLERY_ID)
         }
     }
+
+
+
 
     fun settingClick(view: View) {
         view as TableRow
