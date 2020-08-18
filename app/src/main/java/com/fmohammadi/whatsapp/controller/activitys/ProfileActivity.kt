@@ -6,6 +6,8 @@ import com.fmohammadi.whatsapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
     var mCurrentUser: FirebaseUser? = null
@@ -34,15 +36,21 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setUpProfile() {
-        mDateBase!!.addValueEventListener(object : ValueEventListener{
+        mDateBase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var userName = dataSnapshot.child("userName").value.toString()
                 var userEmail = dataSnapshot.child("userEmail").value.toString()
                 var userStatus = dataSnapshot.child("userStatus").value.toString()
                 var userImage = dataSnapshot.child("userImage").value.toString()
 
+                profile_default_name.text = userName
+                profile_default_about.text = userStatus
+                profile_default_email.text = userEmail
 
-
+                Picasso.with(this@ProfileActivity)
+                    .load(userImage)
+                    .placeholder(R.drawable.profile)
+                    .into(profile_image)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
