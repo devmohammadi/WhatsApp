@@ -15,7 +15,7 @@
                 android:shape="rectangle" >
 
                 <solid
-                    android:color="@color/colorChat"/>
+                    android:color="@color/colorChatMe"/>
 
             </shape>
 
@@ -30,7 +30,7 @@
             android:shape="rectangle">
 
             <solid
-                android:color="@color/colorChat"/>
+                android:color="@color/colorChatMe"/>
 
             <corners
                 android:radius="10dp"/>

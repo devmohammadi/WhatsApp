@@ -54,9 +54,6 @@ class UsersAdapter(var mContext: Context, mDatabaseQuery: DatabaseReference) :
     override fun populateViewHolder(viewHolder: ViewHolder?, user: Users?, position: Int) {
         var userId = getRef(position).key
 
-        var userName = viewHolder!!.user_Name
-        var userAbout = viewHolder!!.user_About
-        var userPic = viewHolder!!.user_LinkProfile
 
         var alertDialogBuilder: AlertDialog.Builder? = null
         var alertDialog: AlertDialog? = null
@@ -69,6 +66,9 @@ class UsersAdapter(var mContext: Context, mDatabaseQuery: DatabaseReference) :
         }
 
         viewHolder.itemView.linearUserName.setOnLongClickListener {
+            var userName = viewHolder!!.user_Name
+            var userAbout = viewHolder!!.user_About
+            var userPic = viewHolder!!.user_LinkProfile
             LongClick(
                 alertDialogBuilder,
                 alertDialog,
@@ -82,6 +82,9 @@ class UsersAdapter(var mContext: Context, mDatabaseQuery: DatabaseReference) :
 
         }
         viewHolder.itemView.name_users.setOnLongClickListener {
+            var userName = viewHolder!!.user_Name
+            var userAbout = viewHolder!!.user_About
+            var userPic = viewHolder!!.user_LinkProfile
             LongClick(
                 alertDialogBuilder,
                 alertDialog,
@@ -96,6 +99,9 @@ class UsersAdapter(var mContext: Context, mDatabaseQuery: DatabaseReference) :
         }
 
         viewHolder.itemView.linearUserName.setOnClickListener {
+            var userName = viewHolder!!.user_Name
+            var userAbout = viewHolder!!.user_About
+            var userPic = viewHolder!!.user_LinkProfile
             sendMessage(userName, userId, userAbout, userPic)
         }
     }

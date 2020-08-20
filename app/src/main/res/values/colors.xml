@@ -13,5 +13,6 @@
     <color name="bgColor">#8f78ba</color>
     <color name="darkBg">#222222</color>
     <color name="green">#6aa62d</color>
-    <color name="colorChat">#B4ECB3</color>
+    <color name="colorChatMe">#B4ECB3</color>
+    <color name="colorChatUser">#DDE8DD</color>
 </resources>
