@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".controller.activitys.ProfileActivity"></activity>
+        <activity android:name=".controller.activitys.MainActivity"></activity>
+        <activity android:name=".controller.activitys.ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".controller.activitys.ChatActivity"
             android:parentActivityName=".controller.activitys.DashboaerdActivity" />
@@ -25,7 +26,8 @@
         <activity android:name=".controller.activitys.DashboaerdActivity" />
         <activity android:name=".controller.activitys.LoginActivity" />
         <activity android:name=".controller.activitys.CreateAccountActivity" />
-        <activity android:name=".controller.activitys.MainActivity">
+        <activity android:name=".controller.activitys.SplashScreanActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

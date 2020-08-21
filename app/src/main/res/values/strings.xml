@@ -21,6 +21,7 @@
     <string name="Update">Update </string>
     <string name="date">12:45 AM</string>
     <string name="textMessage">This is a test message</string>
+    <string name="whatsapp">WhatsApp</string>
 
 
 </resources>
