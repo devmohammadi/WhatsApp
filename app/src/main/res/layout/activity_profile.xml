@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="417dp"
-        android:layout_height="417dp"
+        android:layout_height="300dp"
         android:contentDescription="@string/icon_img"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"

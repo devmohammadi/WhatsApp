@@ -163,6 +163,7 @@ class UsersAdapter(var mContext: Context, mDatabaseQuery: DatabaseReference) :
         chatIntent.putExtra("userStatus", userAbout)
         chatIntent.putExtra("userImage", userPic)
 
+
         mContext.startActivity(chatIntent)
     }
 }

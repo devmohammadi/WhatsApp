@@ -1,15 +1,18 @@
 package com.fmohammadi.whatsapp.controller.activitys
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -21,6 +24,7 @@ import com.squareup.picasso.Picasso
 import com.fmohammadi.whatsapp.R
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.custom_bar.view.*
 
 class ChatActivity : AppCompatActivity() {
 
@@ -32,6 +36,7 @@ class ChatActivity : AppCompatActivity() {
     var mFirebaseAdapter: FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>? = null
     var mUserDataBase: DatabaseReference? = null
     var currentUserName: String? = null
+    var imageProfileLink: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,14 +51,39 @@ class ChatActivity : AppCompatActivity() {
 
         receiverUserId = intent.extras!!.getString("userId")
         receiverUserName = intent.extras!!.getString("userName")
-        supportActionBar!!.title = receiverUserName
 
         mLinearLayoutManager = LinearLayoutManager(this)
         mLinearLayoutManager!!.stackFromEnd = true
 
-
         mFirebaseDatabaseRef = FirebaseDatabase.getInstance().reference
 
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+
+        var inflater = this.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        var customBarView = inflater.inflate(R.layout.custom_bar, null)
+
+        imageProfileLink = intent!!.extras!!.getString("userImage")
+
+        customBarView.customBarUserName.text = receiverUserName
+        Picasso.with(this)
+            .load(imageProfileLink)
+            .placeholder(R.drawable.profile)
+            .into(customBarView.customBarImageUser)
+
+        customBarView.customBar.setOnClickListener {
+            var profileIntent = Intent(this, ProfileActivity::class.java)
+
+            profileIntent.putExtra("userName", receiverUserName)
+            profileIntent.putExtra("userId", receiverUserId)
+            profileIntent.putExtra("userStatus", intent!!.extras!!.getString("userStatus"))
+            profileIntent.putExtra("userImage", imageProfileLink)
+
+            startActivity(profileIntent)
+
+        }
+
+        supportActionBar!!.customView = customBarView
 
         mUserDataBase!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -84,7 +114,8 @@ class ChatActivity : AppCompatActivity() {
                 ) {
                     viewHolder!!.bindViews(frindlyMessage)
 
-                    viewHolder.itemView.visibility = View.VISIBLE
+                    viewHolder.messagesBox.visibility = View.VISIBLE
+
 
                     var currentUserId = mFirebaseUser!!.uid
 
@@ -200,6 +231,7 @@ class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var messageTime: TextView? = null
     var messageBg: LinearLayout = itemView.findViewById(R.id.messageBg)
     var messageBox: RelativeLayout = itemView.findViewById(R.id.boxMessage)
+    var messagesBox: ConstraintLayout = itemView.findViewById(R.id.boxMessages)
 
     fun bindViews(friendlyMessage: FriendlyMessage?) {
         messageNameSend = itemView.findViewById(R.id.tvMessageName)

@@ -14,9 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".controller.activitys.ProfileActivity"
-            android:parentActivityName=".controller.activitys.ChatActivity"></activity>
-        <activity android:name=".controller.activitys.ChatActivity" />
+            android:name=".controller.activitys.ProfileActivity"></activity>
+        <activity
+            android:name=".controller.activitys.ChatActivity"
+            android:parentActivityName=".controller.activitys.DashboaerdActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
