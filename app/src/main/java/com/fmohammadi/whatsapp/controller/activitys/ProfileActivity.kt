@@ -40,7 +40,6 @@ class ProfileActivity : AppCompatActivity() {
                 var userStatus = dataSnapshot.child("userStatus").value.toString()
                 var userImage = dataSnapshot.child("userImage").value.toString()
 
-                supportActionBar!!.title = userName
                 profile_default_name.text = userName
                 profile_default_about.text = userStatus
                 profile_default_email.text = userEmail
