@@ -1,4 +1,4 @@
-package com.fmohammadi.whatsapp.controller.activitys
+splaspackage com.fmohammadi.whatsapp.controller.activitys
 
 import android.annotation.SuppressLint
 import android.app.Activity
